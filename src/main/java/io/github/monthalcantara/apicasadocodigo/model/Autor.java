@@ -3,11 +3,11 @@ package io.github.monthalcantara.apicasadocodigo.model;
 import io.github.monthalcantara.apicasadocodigo.exception.RecursoNaoEncontradoException;
 import io.github.monthalcantara.apicasadocodigo.model.dto.request.AutorRequest;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -18,18 +18,22 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotBlank(message = "{campo.nome.obrigatorio}")
+    @Column(nullable = false)
     private String nome;
 
-    @Email
-    @NotBlank
+    @Email(message = "{campo.email.invalido}")
+    @NotBlank(message = "{campo.email.obrigatorio}")
+    @Column(nullable = false)
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "{campo.descricao.obrigatorio}")
     @Size(max = 400)
+    @Column(nullable = false)
     private String descricao;
 
     @PastOrPresent
+    @Column(nullable = false)
     private LocalDateTime dataCriacao;
 
     public Autor(@NotBlank String nome,

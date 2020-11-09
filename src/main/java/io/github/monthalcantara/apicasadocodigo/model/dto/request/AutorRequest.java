@@ -1,5 +1,7 @@
 package io.github.monthalcantara.apicasadocodigo.model.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -9,14 +11,14 @@ import java.util.Objects;
 
 public class AutorRequest implements Serializable {
 
-    @NotBlank
+    @NotBlank(message = "{campo.nome.obrigatorio}")
     private String nome;
 
-    @Email
-    @NotBlank
+    @Email(message = "{campo.email.invalido}")
+    @NotBlank(message = "{campo.email.obrigatorio}")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "{campo.descricao.obrigatorio}")
     @Size(max = 400)
     private String descricao;
 
@@ -28,6 +30,7 @@ public class AutorRequest implements Serializable {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;
+
         this.dataCriacao = LocalDateTime.now();
     }
 
