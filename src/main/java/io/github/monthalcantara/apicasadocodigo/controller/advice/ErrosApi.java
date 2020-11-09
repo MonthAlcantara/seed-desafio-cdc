@@ -14,4 +14,8 @@ public class ErrosApi {
     public ErrosApi(List<String> listErrors) {
         this.erros = listErrors;
     }
+
+    public List<String> getErros() {
+        return erros;
+    }
 }
