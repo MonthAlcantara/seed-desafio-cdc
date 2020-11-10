@@ -1,7 +1,6 @@
 package io.github.monthalcantara.apicasadocodigo.model;
 
 import io.github.monthalcantara.apicasadocodigo.exception.RecursoNaoEncontradoException;
-import io.github.monthalcantara.apicasadocodigo.model.dto.request.AutorRequest;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -34,24 +33,15 @@ public class Autor {
 
     @PastOrPresent
     @Column(nullable = false)
-    private LocalDateTime dataCriacao;
+    private LocalDateTime dataCriacao = LocalDateTime.now();
 
     public Autor(@NotBlank String nome,
                  @Email @NotBlank String email,
                  @NotBlank
-                 @Size(max = 400) String descricao,
-                 @PastOrPresent LocalDateTime dataCriacao) {
+                 @Size(max = 400) String descricao) {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;
-        this.dataCriacao = dataCriacao;
-    }
-
-    public Autor(AutorRequest autorDTO) {
-        this.nome = autorDTO.getNome();
-        this.email = autorDTO.getEmail();
-        this.descricao = autorDTO.getDescricao();
-        this.dataCriacao = autorDTO.getDataCriacao();
     }
 
     public Autor() {
