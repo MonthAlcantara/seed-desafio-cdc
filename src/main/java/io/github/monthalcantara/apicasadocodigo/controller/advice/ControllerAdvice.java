@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.validation.ConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +17,7 @@ public class ControllerAdvice {
 
     @ExceptionHandler(RecursoNaoEncontradoException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrosApi recursoNaoEncontradoException(RecursoNaoEncontradoException e){
+    public ErrosApi recursoNaoEncontradoException(RecursoNaoEncontradoException e) {
         return new ErrosApi(e.getMessage());
     }
 
@@ -27,6 +29,14 @@ public class ControllerAdvice {
                 .stream()
                 .map(objectError -> objectError.getDefaultMessage())
                 .collect(Collectors.toList());
+        return new ErrosApi(listErrors);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrosApi constraintViolationException(ConstraintViolationException e) {
+        List<String> listErrors = new ArrayList<>();
+        e.getConstraintViolations().stream().forEach(erro -> listErrors.add(erro.getMessageTemplate()));
         return new ErrosApi(listErrors);
     }
 
