@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 @RequestMapping("/autores")
 public class AutorController {
 
+    @PersistenceContext
     private EntityManager entityManager;
 
     public AutorController(EntityManager entityManager){
@@ -27,7 +29,7 @@ public class AutorController {
     @PostMapping
     @Transactional
     public ResponseEntity cadastraNovoAutor(@RequestBody @Valid AutorRequest novoAutorRequest){
-        Autor novoAutor = new Autor(novoAutorRequest);
+        Autor novoAutor = novoAutorRequest.converteParaAutor();
         entityManager.persist(novoAutor);
         return new ResponseEntity(new AutorResponse(novoAutor), HttpStatus.OK);
     }
