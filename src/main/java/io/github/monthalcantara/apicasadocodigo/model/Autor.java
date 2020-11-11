@@ -44,6 +44,7 @@ public class Autor {
         this.descricao = descricao;
     }
 
+    @Deprecated
     public Autor() {
     }
 
