@@ -1,5 +1,6 @@
 package io.github.monthalcantara.apicasadocodigo.model.dto.request;
 
+import io.github.monthalcantara.apicasadocodigo.compartilhado.UniqueValue;
 import io.github.monthalcantara.apicasadocodigo.model.Autor;
 
 import javax.validation.constraints.Email;
@@ -13,7 +14,7 @@ public class AutorRequest implements Serializable {
     @NotBlank(message = "{campo.nome.obrigatorio}")
     private String nome;
 
-    @Email(message = "{campo.email.invalido}")
+    @UniqueValue(fieldName = "email", domainClass = Autor.class)
     @NotBlank(message = "{campo.email.obrigatorio}")
     private String email;
 

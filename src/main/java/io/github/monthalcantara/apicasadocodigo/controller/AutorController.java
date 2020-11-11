@@ -3,12 +3,12 @@ package io.github.monthalcantara.apicasadocodigo.controller;
 import io.github.monthalcantara.apicasadocodigo.model.Autor;
 import io.github.monthalcantara.apicasadocodigo.model.dto.request.AutorRequest;
 import io.github.monthalcantara.apicasadocodigo.model.dto.response.AutorResponse;
-import io.github.monthalcantara.apicasadocodigo.validator.ProibeEmailDuplicadoAutorValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Validator;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,21 +21,18 @@ public class AutorController {
 
     @PersistenceContext
     private EntityManager entityManager;
-    private ProibeEmailDuplicadoAutorValidator proibeEmailDuplicadoAutorValidator;
+//  private ProibeEmailDuplicadoAutorValidator proibeEmailDuplicadoAutorValidator;
 
     /*
      * Quando a requisição chega nesse controller, esse método é executado antes de chegar
      * ao endpoint de destino da requisição para executar as configurações necessarias para execução
      * desse request relativo a esse controller
      */
-    @InitBinder
-    public void init(WebDataBinder binder) {
-        binder.addValidators(proibeEmailDuplicadoAutorValidator);
-    }
+//    @InitBinder public void init(WebDataBinder binder) {binder.addValidators(proibeEmailDuplicadoAutorValidator); }
 
-    public AutorController(EntityManager entityManager, ProibeEmailDuplicadoAutorValidator proibeEmailDuplicadoAutorValidator) {
+    public AutorController(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.proibeEmailDuplicadoAutorValidator = proibeEmailDuplicadoAutorValidator;
+//      this.proibeEmailDuplicadoAutorValidator = proibeEmailDuplicadoAutorValidator;
     }
 
     @PostMapping

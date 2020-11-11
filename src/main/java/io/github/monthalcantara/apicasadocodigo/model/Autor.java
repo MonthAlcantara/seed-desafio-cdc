@@ -23,7 +23,7 @@ public class Autor {
 
     @Email(message = "{campo.email.invalido}")
     @NotBlank(message = "{campo.email.obrigatorio}")
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @NotBlank(message = "{campo.descricao.obrigatorio}")
