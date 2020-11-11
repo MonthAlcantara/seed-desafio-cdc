@@ -39,5 +39,15 @@ public class ControllerAdvice {
         e.getConstraintViolations().stream().forEach(erro -> listErrors.add(erro.getMessageTemplate()));
         return new ErrosApi(listErrors);
     }
+    @ExceptionHandler(IllegalStateException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrosApi illegalStateException(IllegalStateException e) {
+        return new ErrosApi(e.getMessage());
+    }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrosApi illegalArgumentException(IllegalArgumentException e) {
+        return new ErrosApi(e.getMessage());
+    }
 }
