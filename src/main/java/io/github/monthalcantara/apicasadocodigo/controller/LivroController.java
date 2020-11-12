@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 //1
@@ -25,8 +26,10 @@ public class LivroController {
     }
 
     @PostMapping
+    @Transactional
     public ResponseEntity cadastraNovoLivro(@RequestBody @Valid LivroRequest request) {
         Livro livro = request.converteParaLivro(manager, request.getCategoriaId(), request.getAutorId());
+        manager.persist(livro);
         return ResponseEntity.ok(livro.converteParaResponse());
     }
 
