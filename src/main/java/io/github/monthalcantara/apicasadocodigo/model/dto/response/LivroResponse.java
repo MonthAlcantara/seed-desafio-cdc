@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+//2
 public class LivroResponse implements Serializable {
 
     private String titulo;

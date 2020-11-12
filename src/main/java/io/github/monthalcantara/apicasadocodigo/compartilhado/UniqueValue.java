@@ -4,6 +4,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
+//0
 @Documented
 @Constraint(validatedBy = {UniqueValueValidator.class}) // A classe que fará a implementação da validação (Padrão de nome é "NomeDaAnnotationValidator")
 @Target({ElementType.FIELD}) // será utilizada em atributos

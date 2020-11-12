@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
+//0
 /*
  * <Para qual annotation este validador trabalhará, O tipo de parametro esperado(Object, aceita todos os tipos)>
  */

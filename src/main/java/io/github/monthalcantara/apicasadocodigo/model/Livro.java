@@ -1,12 +1,12 @@
 package io.github.monthalcantara.apicasadocodigo.model;
 
-import io.github.monthalcantara.apicasadocodigo.model.dto.response.CategoriaResponse;
 import io.github.monthalcantara.apicasadocodigo.model.dto.response.LivroResponse;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+//3
 @Entity
 public class Livro {
 
@@ -68,16 +68,16 @@ public class Livro {
         this.dataDePublicacao = dataDePublicacao;
     }
 
-    public LivroResponse converteParaResponse(){
+    public LivroResponse converteParaResponse() {
         return new LivroResponse(this.titulo,
-        this.resumo,
-        this.sumario,
-        this.preco,
-        this.numeroDePaginas,
-        this.isbn,
-        this.dataDePublicacao,
-        this.categoria.converteParaResponse(),
-        this.autor.converteParaResponse());
+                this.resumo,
+                this.sumario,
+                this.preco,
+                this.numeroDePaginas,
+                this.isbn,
+                this.dataDePublicacao,
+                this.categoria.converteParaResponse(),
+                this.autor.converteParaResponse());
     }
 
     public Integer getId() {

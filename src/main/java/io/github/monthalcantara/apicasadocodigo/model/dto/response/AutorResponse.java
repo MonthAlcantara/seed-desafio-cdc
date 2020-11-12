@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
+//0
 public class AutorResponse implements Serializable {
 
     @NotBlank

@@ -7,7 +7,7 @@ import io.github.monthalcantara.apicasadocodigo.model.Livro;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-
+//1
 public class LivroRequest implements Serializable {
 
     @NotBlank

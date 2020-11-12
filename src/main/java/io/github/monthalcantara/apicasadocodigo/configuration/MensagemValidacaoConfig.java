@@ -7,7 +7,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.util.Locale;
-
+//0
 @Configuration
 public class MensagemValidacaoConfig {
     @Bean

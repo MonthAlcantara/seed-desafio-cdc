@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
+//1
 public class AutorRequest implements Serializable {
 
     @NotBlank(message = "{campo.nome.obrigatorio}")

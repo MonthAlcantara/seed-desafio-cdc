@@ -6,6 +6,7 @@ import io.github.monthalcantara.apicasadocodigo.model.Categoria;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
+//0
 public class CategoriaResponse implements Serializable {
 
     @NotBlank
