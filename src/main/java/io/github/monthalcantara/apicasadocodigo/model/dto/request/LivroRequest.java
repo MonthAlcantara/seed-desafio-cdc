@@ -1,11 +1,15 @@
 package io.github.monthalcantara.apicasadocodigo.model.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.github.monthalcantara.apicasadocodigo.compartilhado.ExistsId;
 import io.github.monthalcantara.apicasadocodigo.compartilhado.UniqueValue;
+import io.github.monthalcantara.apicasadocodigo.model.Autor;
+import io.github.monthalcantara.apicasadocodigo.model.Categoria;
 import io.github.monthalcantara.apicasadocodigo.model.Livro;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 //1
 public class LivroRequest implements Serializable {
@@ -22,7 +26,7 @@ public class LivroRequest implements Serializable {
 
     @NotNull
     @Min(20)
-    private Double preco;
+    private BigDecimal preco;
 
     @NotNull
     @Min(100)
@@ -32,14 +36,20 @@ public class LivroRequest implements Serializable {
     @UniqueValue(domainClass = Livro.class, fieldName = "isbn")
     private String isbn;
 
+    /*
+    * Shape = Tipo de dado que será recebido
+    * Caso eu fosse receber a data por um form padrão a annotation a ser utilizada é @DateTimeFormat(pattern = "dd/MM/yyyy")
+    */
     @FutureOrPresent
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate dataDePublicacao;
 
     @NotNull
+    @ExistsId(domainClass = Categoria.class, fieldName = "id")
     private Integer categoriaId;
 
     @NotNull
+    @ExistsId(domainClass = Autor.class, fieldName = "id")
     private Integer autorId;
 
     @Deprecated
@@ -49,7 +59,7 @@ public class LivroRequest implements Serializable {
     public LivroRequest(@NotBlank String titulo,
                         @NotBlank @Size(max = 500) String resumo,
                         String sumario,
-                        @NotNull @Min(20) Double preco,
+                        @NotNull @Min(20) BigDecimal preco,
                         @NotNull @Min(100) int numeroDePaginas,
                         @NotBlank String isbn,
                         @FutureOrPresent LocalDate dataDePublicacao) {
@@ -96,11 +106,11 @@ public class LivroRequest implements Serializable {
         this.sumario = sumario;
     }
 
-    public Double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
