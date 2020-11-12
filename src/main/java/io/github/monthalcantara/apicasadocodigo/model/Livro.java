@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 //3
 @Entity
@@ -49,17 +50,16 @@ public class Livro {
     @JoinColumn(name = "autor_id")
     private Autor autor;
 
-    @Deprecated
-    public Livro() {
-    }
 
     public Livro(@NotBlank String titulo,
-                 @Size(max = 500) String resumo,
+                 @NotBlank @Size(max = 500) String resumo,
                  String sumario,
-                 @Min(20) BigDecimal preco,
-                 @Min(100) int numeroDePaginas,
-                 String isbn,
-                 @FutureOrPresent LocalDate dataDePublicacao) {
+                 @NotNull @Min(20) BigDecimal preco,
+                 @NotNull @Min(100) int numeroDePaginas,
+                 @NotBlank String isbn,
+                 @FutureOrPresent LocalDate dataDePublicacao,
+                 Categoria categoria,
+                 Autor autor) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
@@ -67,6 +67,8 @@ public class Livro {
         this.numeroDePaginas = numeroDePaginas;
         this.isbn = isbn;
         this.dataDePublicacao = dataDePublicacao;
+        this.categoria = categoria;
+        this.autor = autor;
     }
 
     public LivroResponse converteParaResponse() {
@@ -159,5 +161,19 @@ public class Livro {
 
     public void setAutor(Autor autor) {
         this.autor = autor;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Livro livro = (Livro) o;
+        return titulo.equals(livro.titulo) &&
+                isbn.equals(livro.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titulo, isbn);
     }
 }
