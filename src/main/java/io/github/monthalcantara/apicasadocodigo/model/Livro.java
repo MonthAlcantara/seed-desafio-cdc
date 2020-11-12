@@ -4,6 +4,7 @@ import io.github.monthalcantara.apicasadocodigo.model.dto.response.LivroResponse
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 //3
@@ -26,7 +27,7 @@ public class Livro {
 
     @Column(nullable = false)
     @Min(20)
-    private Double preco;
+    private BigDecimal preco;
 
     @Column(nullable = false)
     @Min(100)
@@ -55,7 +56,7 @@ public class Livro {
     public Livro(@NotBlank String titulo,
                  @Size(max = 500) String resumo,
                  String sumario,
-                 @Min(20) Double preco,
+                 @Min(20) BigDecimal preco,
                  @Min(100) int numeroDePaginas,
                  String isbn,
                  @FutureOrPresent LocalDate dataDePublicacao) {
@@ -112,11 +113,11 @@ public class Livro {
         this.sumario = sumario;
     }
 
-    public Double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 

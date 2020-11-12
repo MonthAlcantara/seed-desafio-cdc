@@ -3,6 +3,7 @@ package io.github.monthalcantara.apicasadocodigo.model.dto.response;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 //2
@@ -14,7 +15,7 @@ public class LivroResponse implements Serializable {
 
     private String sumario;
 
-    private Double preco;
+    private BigDecimal preco;
 
     private int numeroDePaginas;
 
@@ -34,7 +35,7 @@ public class LivroResponse implements Serializable {
     public LivroResponse(String titulo,
                          String resumo,
                          String sumario,
-                         Double preco,
+                         BigDecimal preco,
                          int numeroDePaginas,
                          String isbn,
                          LocalDate dataDePublicacao,
@@ -75,11 +76,11 @@ public class LivroResponse implements Serializable {
         this.sumario = sumario;
     }
 
-    public Double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
