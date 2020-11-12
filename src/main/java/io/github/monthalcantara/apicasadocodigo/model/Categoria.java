@@ -1,7 +1,11 @@
 package io.github.monthalcantara.apicasadocodigo.model;
 
+import io.github.monthalcantara.apicasadocodigo.model.dto.response.CategoriaResponse;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Categoria {
@@ -13,6 +17,9 @@ public class Categoria {
     @NotBlank
     @Column(unique = true, nullable = false)
     private String nome;
+
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    private List<Livro> livros = new ArrayList<>();
 
     @Deprecated
     public Categoria(){}
@@ -35,5 +42,17 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
+    }
+
+    public CategoriaResponse converteParaResponse() {
+       return new CategoriaResponse(this.nome);
     }
 }

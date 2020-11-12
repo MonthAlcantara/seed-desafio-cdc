@@ -1,6 +1,7 @@
 package io.github.monthalcantara.apicasadocodigo.model;
 
 import io.github.monthalcantara.apicasadocodigo.exception.RecursoNaoEncontradoException;
+import io.github.monthalcantara.apicasadocodigo.model.dto.response.AutorResponse;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -8,6 +9,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -34,6 +37,9 @@ public class Autor {
     @PastOrPresent
     @Column(nullable = false)
     private LocalDateTime dataCriacao = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY)
+    private List<Livro> livros = new ArrayList<>();
 
     public Autor(@NotBlank String nome,
                  @Email @NotBlank String email,
@@ -104,5 +110,11 @@ public class Autor {
     @Override
     public int hashCode() {
         return Objects.hash(id, nome, email);
+    }
+
+    public AutorResponse converteParaResponse() {
+       return new AutorResponse(this.nome,
+                this.email,
+                this.descricao);
     }
 }
