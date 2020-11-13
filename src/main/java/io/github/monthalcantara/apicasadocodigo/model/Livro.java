@@ -50,6 +50,9 @@ public class Livro {
     @JoinColumn(name = "autor_id")
     private Autor autor;
 
+    @Deprecated
+    public Livro() {
+    }
 
     public Livro(@NotBlank String titulo,
                  @NotBlank @Size(max = 500) String resumo,

@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-//2
+//4
 public class LivroRequest implements Serializable {
 
     @NotBlank(message = "{livro.titulo.obrigatorio}")
