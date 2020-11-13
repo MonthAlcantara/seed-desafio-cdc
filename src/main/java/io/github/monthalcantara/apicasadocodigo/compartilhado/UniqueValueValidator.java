@@ -43,7 +43,7 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
         /*
          *
          */
-        Query query = manager.createQuery("Select 1 from " + klass.getName() + " where " +domainAttribute+ "=:value");
+        Query query = manager.createQuery("Select 1 from " + klass.getSimpleName() + " where " +domainAttribute+ "=:value");
         query.setParameter("value", value);
         List<?> list = query.getResultList();
         Assert.isTrue(list.size() < 1,"Foi encontrado mais de um(a) " +klass.getSimpleName()+ " com o atributo '" +domainAttribute+ "' = " + value);
